@@ -1,0 +1,10 @@
+# Executables
+*.exe
+*.out
+*.app
+
+#Folders
+*Output/
+*[tT]emp/
+*[bB]in/
+*obj/
