@@ -26,7 +26,6 @@ namespace autoFrost
         {
             string msBuildPath = GetFullPath("msbuild.exe");
 
-
             // Use ProcessStartInfo class
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.CreateNoWindow = false;
@@ -62,22 +61,6 @@ namespace autoFrost
                     return fullPath;
             }
             return null;
-        }
-
-        private static bool IsValidPath(string path)
-        {
-            Regex driveCheck = new Regex(@"^[a-zA-Z]:\\$");
-            if (!driveCheck.IsMatch(path.Substring(0, 3))) return false;
-            string strTheseAreInvalidFileNameChars = new string(Path.GetInvalidPathChars());
-            strTheseAreInvalidFileNameChars += @":/?*" + "\"";
-            Regex containsABadCharacter = new Regex("[" + Regex.Escape(strTheseAreInvalidFileNameChars) + "]");
-            if (containsABadCharacter.IsMatch(path.Substring(3, path.Length - 3)))
-                return false;
-
-            DirectoryInfo dir = new DirectoryInfo(Path.GetFullPath(path));
-            if (!dir.Exists)
-                return false;
-            return true;
         }
 
         public static string writeCSharp(string path)
