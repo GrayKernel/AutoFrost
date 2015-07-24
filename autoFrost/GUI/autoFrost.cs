@@ -34,7 +34,7 @@ namespace autoFrost
         {
             System.Windows.Forms.OpenFileDialog file = new OpenFileDialog();
             file.Multiselect = true;
-            file.Filter = "csproj files (*.sln)|*.sln";
+            file.Filter = "sln files (*.sln)|*.sln";
             file.Title = "Gray Frost sln";
             file.ShowDialog();
             grayFrostSln = file.FileName;

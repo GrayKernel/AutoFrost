@@ -56,7 +56,7 @@
             this.grayFrostCsproj_BT.Name = "grayFrostCsproj_BT";
             this.grayFrostCsproj_BT.Size = new System.Drawing.Size(374, 125);
             this.grayFrostCsproj_BT.TabIndex = 1;
-            this.grayFrostCsproj_BT.Text = "Gray Frost .csproj";
+            this.grayFrostCsproj_BT.Text = "Gray Frost .sln";
             this.grayFrostCsproj_BT.UseVisualStyleBackColor = true;
             this.grayFrostCsproj_BT.Click += new System.EventHandler(this.grayFrostCsproj_BT_Click);
             // 
