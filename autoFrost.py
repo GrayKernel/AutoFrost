@@ -31,9 +31,9 @@ def buildCppArray(grayFrostCSharp):
 
 def buildPayloadArray(payload):
    generator = bytes_from_file(payload)
-   embedArray =  "public static byte[] g_bInjectCode = new byte[] \n\t{\n\t"
+   embedArray =  "namespace GrayFrostCSharp { class payload { \n public static byte[] g_bInjectCode = new byte[] \n\t{\n\t"
    embedArray += generator
-   embedArray += "\n\t};"
+   embedArray += "\n\t}; } }"
    return embedArray
 
 def bytes_from_file(filename):
@@ -56,13 +56,11 @@ def bytes_from_file(filename):
          builder += ","+hex(ord(byte))
    return builder
 
-def writeFile(embedArray, path, csharp):
-   if(csharp):
-      memHijacking = "namespace GrayFrostCSharp { class payload { " + embedArray + "} }"
-      file = open(path, 'wb')
-      file.seek(0)
-      file.write(memHijacking)
-      file.close()
+def writeFile(embedArray, path):
+   file = open(path, 'wb')
+   file.seek(0)
+   file.write(embedArray)
+   file.close()
    
 def findMSBuild():
    msbuild = "msbuild.exe"
@@ -74,7 +72,7 @@ def findMSBuild():
    return None
    
 def usage():
-   print "Usage: autoFrost.py <C# Payload .exe> <GrayFrost .sln file>"
+   print "Usage: autoFrost.py <C# Payload.exe> <GrayFrost.sln file>"
    exit()
    
 def main(argv):
@@ -92,12 +90,12 @@ def main(argv):
    print "[+] Building Payload into embeddable array"
    embedded = buildPayloadArray(payload)
    print "[+] Writing GrayFrostCSharp\\payload.cs"
-   writeFile(embedded, GrayFrostSln + "\\GrayFrostCSharp\\payload.cs", True)
+   writeFile(embedded, GrayFrostSln + "\\GrayFrostCSharp\\payload.cs")
    print "[+] Building GrayFrostCSharp"
    autoBuild(GrayFrostSln + "\\GrayFrostCSharp\\GrayFrostCSharp.csproj", msBuild)
-   print "[+] Building Slate.h"
+   print "[+] Writing Slate.h"
    grayFrostHeader = buildCppArray(GrayFrostSln + "\\GrayFrostCSharp\\bin\\Debug\\GrayFrostCSharp.exe")
-   writeFile(grayFrostHeader, GrayFrostSln + "\\GrayFrost\\slate.h", False)
+   writeFile(grayFrostHeader, GrayFrostSln + "\\GrayFrost\\slate.h")
    print "[+] Building GrayFrost{32,64}.dll"
    autoBuild(GrayFrostSln + "\\GrayFrost\\GrayFrost32.vcxproj", msBuild, "/property:Configuration=Release;Platform=x86")
    autoBuild(GrayFrostSln + "\\GrayFrost\\GrayFrost64.vcxproj", msBuild, "/property:Configuration=Release;Platform=x64")
