@@ -18,7 +18,7 @@ autoFrost.py <C# Payload .exe> <GrayFrost .sln file>
 
 Example usage: 
 
-```python
+```bash
 autoFrost.py graystorm\bin\Debug\GrayStorm.exe grayfrost\GrayFrost.sln
 ```
 
