@@ -1,12 +1,12 @@
-#autoFrost
+# autoFrost
 
-##GUI
+## GUI
 
 Compile autoFrost and use the GUI to build GrayFrost.
 
 Select the C# executable you want to package and the .sln file for GrayFrost and it will build the GrayFrost{32,64}.dll files for injection.
 
-##Python
+## Python
 
 Streamlined CLI version of autoFrost 
 
@@ -24,10 +24,10 @@ autoFrost.py graystorm\bin\Debug\GrayStorm.exe grayfrost\GrayFrost.sln
 
 ---
 
-##Output
+## Output
 
 The output of GrayFrost will appear in the GrayFrost\output directory. 
 
 ---
 
-###Ensure that "MSBUILD.exe" is in your $PATH variable for either method of building GrayFrost. 
+**Ensure that "MSBUILD.exe" is in your $PATH variable for either method of building GrayFrost.**
